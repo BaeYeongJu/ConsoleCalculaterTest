@@ -56,8 +56,6 @@ namespace ConsoleCalculator
             return 0;
         }
 
-        public static Program operator +(Program a) => a;
-
         //추후 값 연산자 값 으로 줄이기 (코드를 줄이기) -> 1줄로 줄이고 싶음...
     }
 
