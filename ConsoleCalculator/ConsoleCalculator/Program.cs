@@ -32,9 +32,11 @@ namespace ConsoleCalculator
             int firstNum = int.Parse(main.firstStringNumber);
             int secondNum = int.Parse(main.secondStringNumber);
 
+            string operatorText = main.operatorSymbol;
+
             var result = main.SetOperatorCalculate(firstNum, secondNum);
 
-            Console.WriteLine($"결과: {main.firstStringNumber + main.operatorSymbol + main.secondStringNumber} = {result} ");
+            Console.WriteLine($"결과: {firstNum + operatorText + secondNum} = {result} ");
         }
 
         private void SetResultMessage(string stringNumber, int number)
