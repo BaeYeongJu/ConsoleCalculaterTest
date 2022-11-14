@@ -48,7 +48,6 @@ namespace TestProject1
 
             //main.Multiplication(a, b) == a/b
             Assert.AreEqual(main.Division(a, b), a / b);
-            Assert.AreEqual(main.Remainder(a, b), a % b);
         }
 
         [TestMethod]
