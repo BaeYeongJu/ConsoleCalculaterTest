@@ -43,19 +43,43 @@ namespace ConsoleCalculator
             switch (operatorSymbol)
             {
                 case "+":
-                    return int.Parse(firstStringNumber) + int.Parse(secondStringNumber);
+                    return Add();
                 case "-":
-                    return int.Parse(firstStringNumber) - int.Parse(secondStringNumber);
+                    return Sub();
                 case "*":
-                    return int.Parse(firstStringNumber) * int.Parse(secondStringNumber);
+                    return Multiplication();
                 case "/":
-                    return int.Parse(firstStringNumber) / int.Parse(secondStringNumber);
+                    return Division();
                 case "%":
-                    return int.Parse(firstStringNumber) % int.Parse(secondStringNumber);
+                    return Remainder();
             }
             return 0;
         }
 
+        private int Add()
+        {
+            return int.Parse(firstStringNumber) + int.Parse(secondStringNumber);
+        }
+
+        private int Sub()
+        {
+            return int.Parse(firstStringNumber) - int.Parse(secondStringNumber);
+        }
+
+        private int Multiplication()
+        {
+            return int.Parse(firstStringNumber) * int.Parse(secondStringNumber);
+        }
+
+        private int Division()
+        {
+            return int.Parse(firstStringNumber) / int.Parse(secondStringNumber);
+        }
+
+        private int Remainder()
+        {
+            return int.Parse(firstStringNumber) % int.Parse(secondStringNumber);
+        }
         //추후 값 연산자 값 으로 줄이기 (코드를 줄이기) -> 1줄로 줄이고 싶음...
     }
 
