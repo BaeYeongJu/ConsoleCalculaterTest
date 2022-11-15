@@ -4,9 +4,9 @@ namespace ConsoleCalculator
 {
     public class Program
     {
-        private string firstStringNumber;
-        private string secondStringNumber;
-        private string operatorSymbol;
+        public string firstStringNumber;
+        public string secondStringNumber;
+        public string operatorSymbol;
 
         private int firstNumber = 0;
         private int secondNumber = 0;
@@ -27,7 +27,11 @@ namespace ConsoleCalculator
             main.secondStringNumber = Console.ReadLine();
 
             main.SetResultMessage(main.secondStringNumber, main.secondNumber);
-            var result = main.SetOperatorCalculate();
+
+            int firstNumber = int.Parse(main.firstStringNumber);
+            int secondNumber = int.Parse(main.secondStringNumber);
+
+            var result = main.SetOperatorCalculate(firstNumber, secondNumber);
 
             Console.WriteLine($"결과: {main.firstStringNumber + main.operatorSymbol + main.secondStringNumber} = {result} ");
         }
@@ -38,47 +42,52 @@ namespace ConsoleCalculator
                 Console.WriteLine("결과: 숫자 잘못 입력됨");
         }
 
-        private int SetOperatorCalculate()
+        public int SetOperatorCalculate(int firstNumber, int secondNumber)
         {
             switch (operatorSymbol)
             {
                 case "+":
-                    return Add();
+                    return Add(firstNumber, secondNumber);
                 case "-":
-                    return Sub();
+                    return Sub(firstNumber, secondNumber);
                 case "*":
-                    return Multiplication();
+                    return Multiplication(firstNumber, secondNumber);
                 case "/":
-                    return Division();
+                    return Division(firstNumber, secondNumber);
                 case "%":
-                    return Remainder();
+                    return Remainder(firstNumber, secondNumber);
             }
             return 0;
         }
 
-        private int Add()
+        public int Add(int firstNumber,int secondNumber)
         {
-            return int.Parse(firstStringNumber) + int.Parse(secondStringNumber);
+            return firstNumber + secondNumber;
+            //return int.Parse(firstStringNumber) + int.Parse(secondStringNumber);
         }
 
-        private int Sub()
+        public int Sub(int firstNumber, int secondNumber)
         {
-            return int.Parse(firstStringNumber) - int.Parse(secondStringNumber);
+            return firstNumber - secondNumber;
+            //return int.Parse(firstStringNumber) - int.Parse(secondStringNumber);
         }
 
-        private int Multiplication()
+        public int Multiplication(int firstNumber, int secondNumber)
         {
-            return int.Parse(firstStringNumber) * int.Parse(secondStringNumber);
+            return firstNumber * secondNumber;
+            //return int.Parse(firstStringNumber) * int.Parse(secondStringNumber);
         }
 
-        private int Division()
+        public int Division(int firstNumber, int secondNumber)
         {
-            return int.Parse(firstStringNumber) / int.Parse(secondStringNumber);
+            return firstNumber / secondNumber;
+            //return int.Parse(firstStringNumber) / int.Parse(secondStringNumber);
         }
 
-        private int Remainder()
+        public int Remainder(int firstNumber, int secondNumber)
         {
-            return int.Parse(firstStringNumber) % int.Parse(secondStringNumber);
+            return firstNumber % secondNumber;
+            //return int.Parse(firstStringNumber) % int.Parse(secondStringNumber);
         }
         //추후 값 연산자 값 으로 줄이기 (코드를 줄이기) -> 1줄로 줄이고 싶음...
     }
