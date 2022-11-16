@@ -4,13 +4,6 @@ namespace ConsoleCalculator
 {
     public class Program
     {
-        public string firstStringNumber;
-        public string secondStringNumber;
-        public string operatorSymbol;
-
-        private int firstNumber = 0;
-        private int secondNumber = 0;
-
         static void Main(string[] args)
         {
             Program main = new Program();
@@ -18,34 +11,41 @@ namespace ConsoleCalculator
             Console.WriteLine("[Calculater]");
             Console.Write("첫번째 숫자 입력 (정수):");
 
-            main.firstStringNumber = Console.ReadLine();
-            main.SetResultMessage(main.firstStringNumber, main.firstNumber);
+            string firstStringNumber = string.Empty;
+            string secondStringNumber = string.Empty;
+            string operatorSymbol = string.Empty;
+
+            int firstNumber = 0;
+            int secondNumber = 0;
+
+            firstStringNumber = Console.ReadLine();
+            main.ShowErrorMessage(firstStringNumber);
 
             Console.Write("연산자 입력 (+,-,*,/,%):");
-            main.operatorSymbol = Console.ReadLine();
+            operatorSymbol = Console.ReadLine();
 
             Console.Write("두번째 숫자 입력 (정수):");
-            main.secondStringNumber = Console.ReadLine();
+            secondStringNumber = Console.ReadLine();
 
-            main.SetResultMessage(main.secondStringNumber, main.secondNumber);
+            main.ShowErrorMessage(secondStringNumber);
 
-            int firstNum = int.Parse(main.firstStringNumber);
-            int secondNum = int.Parse(main.secondStringNumber);
-
-            string operatorText = main.operatorSymbol;
-
-            var result = main.SetOperatorCalculate(firstNum, secondNum);
-
-            Console.WriteLine($"결과: {firstNum + operatorText + secondNum} = {result} ");
+            var result = main.Calculate(int.Parse(firstStringNumber), int.Parse(secondStringNumber), operatorSymbol);
+            Console.WriteLine($"결과: {int.Parse(firstStringNumber) + operatorSymbol + int.Parse(secondStringNumber)} = {result} ");
         }
 
-        private void SetResultMessage(string stringNumber, int number)
+        private bool IsNumberIntType(string stringNumber)
         {
-            if (!int.TryParse(stringNumber, out number))
+            bool result = int.TryParse(stringNumber, out _);
+            return result;
+        }
+
+        private void ShowErrorMessage(string stringNumber)
+        {
+            if(!IsNumberIntType(stringNumber))
                 Console.WriteLine("결과: 숫자 잘못 입력됨");
         }
 
-        public int SetOperatorCalculate(int firstNumber, int secondNumber)
+        public int Calculate(int firstNumber, int secondNumber , string operatorSymbol)
         {
             switch (operatorSymbol)
             {
@@ -87,12 +87,5 @@ namespace ConsoleCalculator
         {
             return firstNumber % secondNumber;
         }
-
-        //추후 값 연산자 값 으로 줄이기 (코드를 줄이기) -> 1줄로 줄이고 싶음...
     }
-
-    //예외 처리 하기
-    //int면 정수만 입력 가능하게
-    //그외의 값이 잘못 쳤다고 오류 출력
-    //연산자도 마찬가지
 }
