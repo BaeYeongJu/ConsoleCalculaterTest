@@ -17,6 +17,7 @@ namespace ConsoleCalculator
 
             Console.WriteLine("[Calculater]");
             Console.Write("첫번째 숫자 입력 (정수):");
+
             main.firstStringNumber = Console.ReadLine();
             main.SetResultMessage(main.firstStringNumber, main.firstNumber);
 
@@ -28,12 +29,14 @@ namespace ConsoleCalculator
 
             main.SetResultMessage(main.secondStringNumber, main.secondNumber);
 
-            int firstNumber = int.Parse(main.firstStringNumber);
-            int secondNumber = int.Parse(main.secondStringNumber);
+            int firstNum = int.Parse(main.firstStringNumber);
+            int secondNum = int.Parse(main.secondStringNumber);
 
-            var result = main.SetOperatorCalculate(firstNumber, secondNumber);
+            string operatorText = main.operatorSymbol;
 
-            Console.WriteLine($"결과: {main.firstStringNumber + main.operatorSymbol + main.secondStringNumber} = {result} ");
+            var result = main.SetOperatorCalculate(firstNum, secondNum);
+
+            Console.WriteLine($"결과: {firstNum + operatorText + secondNum} = {result} ");
         }
 
         private void SetResultMessage(string stringNumber, int number)
@@ -63,32 +66,28 @@ namespace ConsoleCalculator
         public int Add(int firstNumber,int secondNumber)
         {
             return firstNumber + secondNumber;
-            //return int.Parse(firstStringNumber) + int.Parse(secondStringNumber);
         }
 
         public int Sub(int firstNumber, int secondNumber)
         {
             return firstNumber - secondNumber;
-            //return int.Parse(firstStringNumber) - int.Parse(secondStringNumber);
         }
 
         public int Multiplication(int firstNumber, int secondNumber)
         {
             return firstNumber * secondNumber;
-            //return int.Parse(firstStringNumber) * int.Parse(secondStringNumber);
         }
 
         public int Division(int firstNumber, int secondNumber)
         {
             return firstNumber / secondNumber;
-            //return int.Parse(firstStringNumber) / int.Parse(secondStringNumber);
         }
 
         public int Remainder(int firstNumber, int secondNumber)
         {
             return firstNumber % secondNumber;
-            //return int.Parse(firstStringNumber) % int.Parse(secondStringNumber);
         }
+
         //추후 값 연산자 값 으로 줄이기 (코드를 줄이기) -> 1줄로 줄이고 싶음...
     }
 
