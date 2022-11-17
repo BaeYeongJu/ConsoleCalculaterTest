@@ -1,16 +1,22 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+ï»¿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ConsoleCalculator;
 
-namespace TestProject1
+namespace TestProject
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
-        /*Arrange : Å×½ºÆ®ÇÒ ¸Ş¼Òµå¸¦ ÀÎ½ºÅÏ½º ÇØÁÜ
-        Act : Å×½ºÆ®ÇÒ ½Ã³ª¸®¿À¸¦ ±¸Çö
-        Assert : ¿¹»ó °ª°ú ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎ*/
+        /*Arrange : í…ŒìŠ¤íŠ¸í•  ë©”ì†Œë“œë¥¼ ì¸ìŠ¤í„´ìŠ¤ í•´ì¤Œ
+        Act : í…ŒìŠ¤íŠ¸í•  ì‹œë‚˜ë¦¬ì˜¤ë¥¼ êµ¬í˜„
+        Assert : ì˜ˆìƒ ê°’ê³¼ ì¼ì¹˜í•˜ëŠ”ì§€ í™•ì¸*/
 
-        private Program calculatorProgram;
+        private CalculateManager calculator;
+
+        [TestInitialize()]
+        public void Initialize()
+        {
+            calculator = new CalculateManager();
+        }
 
         [TestMethod]
         [DataRow(0, 10)]
@@ -18,7 +24,7 @@ namespace TestProject1
         {
             //main.Add(a, b) == a+b
 
-            Assert.AreEqual(calculatorProgram.Add(a, b), a + b);
+            Assert.AreEqual(calculator.Add(a, b), a + b);
         }
 
         [TestMethod]
@@ -27,7 +33,7 @@ namespace TestProject1
         {
             //main.Sub(a, b) == a-b
 
-            Assert.AreEqual(calculatorProgram.Sub(a, b), a - b);
+            Assert.AreEqual(calculator.Sub(a, b), a - b);
         }
 
         [TestMethod]
@@ -35,7 +41,7 @@ namespace TestProject1
         public void CalculateMultiplicationTest(int a, int b)
         {
             //main.Multiplication(a, b) == a*b
-            Assert.AreEqual(calculatorProgram.Multiplication(a, b), a * b);
+            Assert.AreEqual(calculator.Multiplication(a, b), a * b);
         }
 
         [TestMethod]
@@ -43,7 +49,7 @@ namespace TestProject1
         public void CalculateDivisionTest(int a, int b)
         {
             //main.Multiplication(a, b) == a/b
-            Assert.AreEqual(calculatorProgram.Division(a, b), a / b);
+            Assert.AreEqual(calculator.Division(a, b), a / b);
         }
 
         [TestMethod]
@@ -51,19 +57,13 @@ namespace TestProject1
         public void CalculateRemainderTest(int a, int b)
         {
             //main.Remainder(a, b) == a%b
-            Assert.AreEqual(calculatorProgram.Remainder(a, b), a % b);
-        }
-
-        [TestInitialize()]
-        public void Initialize() 
-        {
-            calculatorProgram = new Program();
+            Assert.AreEqual(calculator.Remainder(a, b), a % b);
         }
 
         [TestCleanup()]
         public void Cleanup() 
         {
-            calculatorProgram = null;
+            calculator = null;
         }
     }
 }
