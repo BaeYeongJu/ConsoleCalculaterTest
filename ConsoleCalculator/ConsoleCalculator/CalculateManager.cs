@@ -6,7 +6,7 @@ namespace ConsoleCalculator
 {
     public class CalculateManager
     {
-        private bool IsNumberIntType(string stringNumber)
+        private bool IsNumberDoubleType(string stringNumber)
         {
             bool result = double.TryParse(stringNumber, out _);
             return result;
@@ -14,7 +14,7 @@ namespace ConsoleCalculator
 
         public void ShowErrorMessage(string stringNumber)
         {
-            if (!IsNumberIntType(stringNumber))
+            if (!IsNumberDoubleType(stringNumber))
                 Console.WriteLine("결과: 숫자 잘못 입력됨");
         }
 
