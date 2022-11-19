@@ -8,7 +8,7 @@ namespace ConsoleCalculator
     {
         private bool IsNumberIntType(string stringNumber)
         {
-            bool result = int.TryParse(stringNumber, out _);
+            bool result = double.TryParse(stringNumber, out _);
             return result;
         }
 
@@ -18,7 +18,7 @@ namespace ConsoleCalculator
                 Console.WriteLine("결과: 숫자 잘못 입력됨");
         }
 
-        public int Calculate(int firstNumber, int secondNumber, string operatorSymbol)
+        public double Calculate(double firstNumber, double secondNumber, string operatorSymbol)
         {
             switch (operatorSymbol)
             {
@@ -36,27 +36,27 @@ namespace ConsoleCalculator
             return 0;
         }
 
-        public int Add(int firstNumber, int secondNumber)
+        public double Add(double firstNumber, double secondNumber)
         {
             return firstNumber + secondNumber;
         }
 
-        public int Sub(int firstNumber, int secondNumber)
+        public double Sub(double firstNumber, double secondNumber)
         {
             return firstNumber - secondNumber;
         }
 
-        public int Multiplication(int firstNumber, int secondNumber)
+        public double Multiplication(double firstNumber, double secondNumber)
         {
             return firstNumber * secondNumber;
         }
 
-        public int Division(int firstNumber, int secondNumber)
+        public double Division(double firstNumber, double secondNumber)
         {
             return firstNumber / secondNumber;
         }
 
-        public int Remainder(int firstNumber, int secondNumber)
+        public double Remainder(double firstNumber, double secondNumber)
         {
             return firstNumber % secondNumber;
         }

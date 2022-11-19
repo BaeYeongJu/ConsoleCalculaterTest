@@ -20,7 +20,8 @@ namespace TestProject
 
         [TestMethod]
         [DataRow(0, 10)]
-        public void CalculateAddTest(int a,int b)
+        [DataRow(2.3, 14.2)]
+        public void CalculateAddTest(double a, double b)
         {
             //main.Add(a, b) == a+b
 
@@ -29,7 +30,8 @@ namespace TestProject
 
         [TestMethod]
         [DataRow(20, 10)]
-        public void CalculateSubTest(int a, int b)
+        [DataRow(5.2, 1.2)]
+        public void CalculateSubTest(double a, double b)
         {
             //main.Sub(a, b) == a-b
 
@@ -38,7 +40,8 @@ namespace TestProject
 
         [TestMethod]
         [DataRow(-3, 10)]
-        public void CalculateMultiplicationTest(int a, int b)
+        [DataRow(5.2, 7.3)]
+        public void CalculateMultiplicationTest(double a, double b)
         {
             //main.Multiplication(a, b) == a*b
             Assert.AreEqual(calculator.Multiplication(a, b), a * b);
@@ -46,7 +49,8 @@ namespace TestProject
 
         [TestMethod]
         [DataRow(14, 10)]
-        public void CalculateDivisionTest(int a, int b)
+        [DataRow(5.9, 28.3)]
+        public void CalculateDivisionTest(double a, double b)
         {
             //main.Multiplication(a, b) == a/b
             Assert.AreEqual(calculator.Division(a, b), a / b);
@@ -54,7 +58,8 @@ namespace TestProject
 
         [TestMethod]
         [DataRow(3, 2)]
-        public void CalculateRemainderTest(int a, int b)
+        [DataRow(3.3, 2.7)]
+        public void CalculateRemainderTest(double a, double b)
         {
             //main.Remainder(a, b) == a%b
             Assert.AreEqual(calculator.Remainder(a, b), a % b);
