@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ConsoleCalculator;
+using System.Diagnostics;
 
 namespace TestProject
 {
@@ -67,41 +68,50 @@ namespace TestProject
 
         [TestMethod]
         [DataRow(3, 2, "+")]
-        public void CalculateAddSymbolTest(double a, double b, string symbal)
+        public void CalculateAddOperatorTest(double a, double b, string operatorSymbol)
         {
-            Assert.AreEqual(calculator.Calculate(a, b, symbal), a + b);
+            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a + b);
         }
 
         [TestMethod]
         [DataRow(3, 2, "-")]
-        public void CalculateSubSymbolTest(double a, double b, string symbal)
+        public void CalculateSubOperatorTest(double a, double b, string operatorSymbol)
         {
-            Assert.AreEqual(calculator.Calculate(a, b, symbal), a - b);
+            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a - b);
         }
 
         [TestMethod]
         [DataRow(3, 2, "*")]
-        public void CalculateMultiplicationSymbolTest(double a, double b, string symbal)
+        public void CalculateMultiplicationOperatorTest(double a, double b, string operatorSymbol)
         {
-            Assert.AreEqual(calculator.Calculate(a, b, symbal), a * b);
+            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a * b);
         }
 
         [TestMethod]
         [DataRow(3, 2, "/")]
-        public void CalculateDivisionSymbolTest(double a, double b, string symbal)
+        public void CalculateDivisionOperatorTest(double a, double b, string operatorSymbol)
         {
-            Assert.AreEqual(calculator.Calculate(a, b, symbal), a / b);
+            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a / b);
         }
 
         [TestMethod]
         [DataRow(3, 2, "%")]
-        public void CalculateRemainderSymbolTest(double a, double b, string symbal)
+        public void CalculateRemainderOperatorTest(double a, double b, string operatorSymbol)
         {
-            Assert.AreEqual(calculator.Calculate(a, b, symbal), a % b);
+            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a % b);
+        }
+
+        [TestMethod]
+        [DataRow(3, 2, "p")]
+        [DataRow(-3, 1, "p")]
+        public void CalculatePlusOrMinusOperatorTest(double a, double b, string operatorSymbol)
+        {
+            string result= (-a).ToString() + b.ToString();
+            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), double.Parse(result));
         }
 
         [TestCleanup()]
-        public void Cleanup() 
+        public void Cleanup()
         {
             calculator = null;
         }
