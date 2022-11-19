@@ -22,7 +22,7 @@ namespace ConsoleCalculator
             firstStringNumber = Console.ReadLine();
             calculateManager.ShowErrorMessage(firstStringNumber);
 
-            Console.Write("연산자 입력 (+,-,*,/,%):");
+            Console.Write("연산자 입력 (+,-,*,/,%,p):");
             operatorSymbol = Console.ReadLine();
 
             Console.Write("두번째 숫자 입력 :");
