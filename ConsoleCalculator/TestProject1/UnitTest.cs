@@ -102,9 +102,9 @@ namespace TestProject
         }
 
         [TestMethod]
-        [DataRow(3, 2, "p")]
-        [DataRow(-3, 1, "p")]
-        public void CalculatePlusOrMinusOperatorTest(double a, double b, string operatorSymbol)
+        [DataRow(3, 2, "n")]
+        [DataRow(-3, 1, "n")]
+        public void CalculateNegativeOperatorTest(double a, double b, string operatorSymbol)
         {
             string result= (-a).ToString() + b.ToString();
             Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), double.Parse(result));

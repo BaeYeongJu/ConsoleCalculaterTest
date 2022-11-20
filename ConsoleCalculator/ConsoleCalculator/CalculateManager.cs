@@ -32,8 +32,8 @@ namespace ConsoleCalculator
                     return Division(firstNumber, secondNumber);
                 case "%":
                     return Remainder(firstNumber, secondNumber);
-                case "p":
-                    return PlusOrMinus(firstNumber, secondNumber);
+                case "n":
+                    return Negative(firstNumber, secondNumber);
             }
             return 0;
         }
@@ -63,7 +63,7 @@ namespace ConsoleCalculator
             return firstNumber % secondNumber;
         }
 
-        public double PlusOrMinus(double firstNumber, double secondNumber)
+        public double Negative(double firstNumber, double secondNumber)
         {
             string stringNumber = (-firstNumber).ToString() + secondNumber.ToString();
             return double.Parse(stringNumber);
