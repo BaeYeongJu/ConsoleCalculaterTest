@@ -34,6 +34,8 @@ namespace ConsoleCalculator
                     return Remainder(firstNumber, secondNumber);
                 case "n":
                     return Negative(firstNumber, secondNumber);
+                case ".":
+                    return ShowDot(firstNumber, secondNumber);
             }
             return 0;
         }
@@ -65,8 +67,15 @@ namespace ConsoleCalculator
 
         public double Negative(double firstNumber, double secondNumber)
         {
-            string stringNumber = (-firstNumber).ToString() + secondNumber.ToString();
-            return double.Parse(stringNumber);
+            string result = (-firstNumber).ToString() + secondNumber.ToString();
+            return double.Parse(result);
+        }
+
+        public double ShowDot(double firstNumber, double secondNumber)
+        {
+            string operatorSymbol = ".";
+            string result = (firstNumber).ToString() + operatorSymbol+ secondNumber.ToString();
+            return double.Parse(result);
         }
     }
 }
