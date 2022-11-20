@@ -65,6 +65,41 @@ namespace TestProject
             Assert.AreEqual(calculator.Remainder(a, b), a % b);
         }
 
+        [TestMethod]
+        [DataRow(3, 2, "+")]
+        public void CalculateAddSymbolTest(double a, double b, string symbal)
+        {
+            Assert.AreEqual(calculator.Calculate(a, b, symbal), a + b);
+        }
+
+        [TestMethod]
+        [DataRow(3, 2, "-")]
+        public void CalculateSubSymbolTest(double a, double b, string symbal)
+        {
+            Assert.AreEqual(calculator.Calculate(a, b, symbal), a - b);
+        }
+
+        [TestMethod]
+        [DataRow(3, 2, "*")]
+        public void CalculateMultiplicationSymbolTest(double a, double b, string symbal)
+        {
+            Assert.AreEqual(calculator.Calculate(a, b, symbal), a * b);
+        }
+
+        [TestMethod]
+        [DataRow(3, 2, "/")]
+        public void CalculateDivisionSymbolTest(double a, double b, string symbal)
+        {
+            Assert.AreEqual(calculator.Calculate(a, b, symbal), a / b);
+        }
+
+        [TestMethod]
+        [DataRow(3, 2, "%")]
+        public void CalculateRemainderSymbolTest(double a, double b, string symbal)
+        {
+            Assert.AreEqual(calculator.Calculate(a, b, symbal), a % b);
+        }
+
         [TestCleanup()]
         public void Cleanup() 
         {
