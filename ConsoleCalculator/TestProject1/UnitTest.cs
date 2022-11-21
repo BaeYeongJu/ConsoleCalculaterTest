@@ -110,6 +110,15 @@ namespace TestProject
             Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), double.Parse(result));
         }
 
+        [TestMethod]
+        [DataRow(0, 3, ".")]
+        public void CalculateDotOperatorTest(double a, double b, string operatorSymbol)
+        {
+            string result = (a).ToString() + operatorSymbol + b.ToString();
+            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), double.Parse(result));
+        }
+
+
         [TestCleanup()]
         public void Cleanup()
         {
