@@ -8,6 +8,7 @@ namespace ConsoleCalculator
         static void Main(string[] args)
         {
             CalculateManager calculateManager = new CalculateManager();
+            UIManager uiManager = new UIManager();
 
             Console.WriteLine("[Calculater]");
             Console.Write("첫번째 숫자 입력 :");
@@ -22,16 +23,25 @@ namespace ConsoleCalculator
             firstStringNumber = Console.ReadLine();
             calculateManager.ShowErrorMessage(firstStringNumber);
 
-            Console.Write("연산자 입력 (+,-,*,/,%,n,.):");
+            Console.Write("연산자 입력 (+,-,*,/,%,n,.,r):");
             operatorSymbol = Console.ReadLine();
+            double result = 0;
 
-            Console.Write("두번째 숫자 입력 :");
-            secondStringNumber = Console.ReadLine();
+            if (calculateManager.IsReciprocalOperator(operatorSymbol))
+            {
+                Console.Write("두번째 숫자 입력 :");
+                secondStringNumber = Console.ReadLine();
 
-            calculateManager.ShowErrorMessage(secondStringNumber);
+                calculateManager.ShowErrorMessage(secondStringNumber);
 
-            var result = calculateManager.Calculate(double.Parse(firstStringNumber), double.Parse(secondStringNumber), operatorSymbol);
-            Console.WriteLine($"결과: {double.Parse(firstStringNumber) + operatorSymbol + double.Parse(secondStringNumber)} = {result} ");
+                uiManager.ShowResult(uiManager, calculateManager, firstStringNumber, secondStringNumber, operatorSymbol, result);
+            }
+            else
+            {
+                uiManager.ShowResult(uiManager, calculateManager, firstStringNumber, operatorSymbol, result);
+            }
         }
+
+
     }
 }
