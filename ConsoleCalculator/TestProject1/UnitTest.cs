@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ConsoleCalculator;
 using System.Diagnostics;
+using System;
+using System.Collections.Generic;
 
 namespace TestProject
 {
@@ -25,7 +27,6 @@ namespace TestProject
         public void CalculateAddTest(double a, double b)
         {
             //main.Add(a, b) == a+b
-
             Assert.AreEqual(calculator.Add(a, b), a + b);
         }
 
@@ -35,7 +36,6 @@ namespace TestProject
         public void CalculateSubTest(double a, double b)
         {
             //main.Sub(a, b) == a-b
-
             Assert.AreEqual(calculator.Sub(a, b), a - b);
         }
 
@@ -66,64 +66,50 @@ namespace TestProject
             Assert.AreEqual(calculator.Remainder(a, b), a % b);
         }
 
+        //첫번째 숫자 값 테스트 코드
         [TestMethod]
-        [DataRow(3, 2, "+")]
-        public void CalculateAddOperatorTest(double a, double b, string operatorSymbol)
+        [DynamicData(nameof(CalculateOneInputData),DynamicDataSourceType.Method)]
+        public void CalculateOneInputTest(double a, string operatorSymbol, double result)
         {
-            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a + b);
-        }
-
-        [TestMethod]
-        [DataRow(3, 2, "-")]
-        public void CalculateSubOperatorTest(double a, double b, string operatorSymbol)
-        {
-            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a - b);
-        }
-
-        [TestMethod]
-        [DataRow(3, 2, "*")]
-        public void CalculateMultiplicationOperatorTest(double a, double b, string operatorSymbol)
-        {
-            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a * b);
-        }
-
-        [TestMethod]
-        [DataRow(3, 2, "/")]
-        public void CalculateDivisionOperatorTest(double a, double b, string operatorSymbol)
-        {
-            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a / b);
-        }
-
-        [TestMethod]
-        [DataRow(3, 2, "%")]
-        public void CalculateRemainderOperatorTest(double a, double b, string operatorSymbol)
-        {
-            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), a % b);
-        }
-
-        [TestMethod]
-        [DataRow(3, 2, "n")]
-        [DataRow(-3, 1, "n")]
-        public void CalculateNegativeOperatorTest(double a, double b, string operatorSymbol)
-        {
-            string result= (-a).ToString() + b.ToString();
-            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), double.Parse(result));
-        }
-
-        [TestMethod]
-        [DataRow(0, 3, ".")]
-        public void CalculateDecimalPointOperatorTest(double a, double b, string operatorSymbol)
-        {
-            string result = (a).ToString() + operatorSymbol + b.ToString();
-            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), double.Parse(result));
-        }
-
-        [TestMethod]
-        [DataRow(3, "r")]
-        public void CalculateReciprocalOperatorTest(double a, string operatorSymbol)
-        {
-            double result = 1 / (a);
             Assert.AreEqual(calculator.Calculate(a, operatorSymbol), result);
+        }
+
+        public static IEnumerable<object[]> CalculateOneInputData()
+        {
+            return new[]
+            {
+                new object[] { 3, "r", 1/(double)3 },
+                new object[] { 53, "s", Math.Sqrt(53) },
+                new object[] { 153, "s", Math.Sqrt(153) },
+                new object[] { 10, "p", Math.Pow(10,2) }
+            };
+        }
+
+        //첫번째와 두번째 숫자 테스트 코드
+        [TestMethod]
+        [DynamicData(nameof(CalculateTwoInputData), DynamicDataSourceType.Method)]
+        public void CalculateTwoInputTest(double a, double b, string operatorSymbol, double result)
+        {
+            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), result);
+        }
+
+        public static IEnumerable<object[]> CalculateTwoInputData()
+        {
+            return new[]
+            {
+                new object[] { 20, 10, "+", 20+10 },
+                new object[] { 3.2, 9, "+", 3.2+9 },
+                new object[] { 4, 345, "-", 4-345},
+                new object[] { 29.2, 10.3, "-", 29.2 - 10.3 },
+                new object[] { 4, 67, "*", 4 * 67 },
+                new object[] { 22.2, 45.3, "*", 22.2 * 45.3 },
+                new object[] { 23, 19.3, "/", 23 / 19.3 },
+                new object[] { 233, 16.3, "/", 233 / 16.3 },
+                new object[] { 3, 4.3, "%", 3 % 4.3 },
+                new object[] { 24, 16.3, "%", 24 % 16.3 },
+                new object[] { 24, 16, ".", double.Parse(24.ToString() + "." + 16.ToString())},
+                new object[] { 24, 16, "n", double.Parse((-24).ToString() + 16.ToString())},
+            };
         }
 
         [TestCleanup()]
