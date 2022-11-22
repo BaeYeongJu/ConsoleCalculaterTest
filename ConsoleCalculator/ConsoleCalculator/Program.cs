@@ -17,17 +17,14 @@ namespace ConsoleCalculator
             string secondStringNumber = string.Empty;
             string operatorSymbol = string.Empty;
 
-            double firstNumber = 0f;
-            double secondNumber = 0f;
-
             firstStringNumber = Console.ReadLine();
             calculateManager.ShowErrorMessage(firstStringNumber);
 
-            Console.Write("연산자 입력 (+,-,*,/,%,n,.,r):");
+            Console.Write("연산자 입력 (+,-,*,/,%,n,.,r,s,p):");
             operatorSymbol = Console.ReadLine();
             double result = 0;
 
-            if (calculateManager.IsReciprocalOperator(operatorSymbol))
+            if (calculateManager.IsOperatorNotNeedSceondNumber(operatorSymbol))
             {
                 uiManager.ShowResult(calculateManager, firstStringNumber, operatorSymbol, result);
             }
