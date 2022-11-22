@@ -27,18 +27,18 @@ namespace ConsoleCalculator
             operatorSymbol = Console.ReadLine();
             double result = 0;
 
-            if (calculateManager.IsReciprocalOperator(operatorSymbol))
+            if (!calculateManager.IsReciprocalOperator(operatorSymbol))
             {
                 Console.Write("두번째 숫자 입력 :");
                 secondStringNumber = Console.ReadLine();
 
                 calculateManager.ShowErrorMessage(secondStringNumber);
 
-                uiManager.ShowResult(uiManager, calculateManager, firstStringNumber, secondStringNumber, operatorSymbol, result);
+                uiManager.ShowResult(calculateManager, firstStringNumber, secondStringNumber, operatorSymbol, result);
             }
             else
             {
-                uiManager.ShowResult(uiManager, calculateManager, firstStringNumber, operatorSymbol, result);
+                uiManager.ShowResult(calculateManager, firstStringNumber, operatorSymbol, result);
             }
         }
 

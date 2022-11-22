@@ -17,16 +17,16 @@ namespace ConsoleCalculator
             Console.WriteLine($"결과: {double.Parse(firstStringNumber) + operatorSymbol + double.Parse(secondStringNumber)} = {result} ");
         }
 
-        public void ShowResult(UIManager uimanager, CalculateManager calculateManager, string firstStringNumber, string operatorSymbol, double result)
+        public void ShowResult(CalculateManager calculateManager, string firstStringNumber, string operatorSymbol, double result)
         {
             result = calculateManager.Calculate(double.Parse(firstStringNumber), operatorSymbol);
-            uimanager.ShowMessage(firstStringNumber, operatorSymbol, result);
+            ShowMessage(firstStringNumber, operatorSymbol, result);
         }
 
-        public void ShowResult(UIManager uimanager, CalculateManager calculateManager, string firstStringNumber, string secondStringNumber, string operatorSymbol, double result)
+        public void ShowResult(CalculateManager calculateManager, string firstStringNumber, string secondStringNumber, string operatorSymbol, double result)
         {
             result = calculateManager.Calculate(double.Parse(firstStringNumber), double.Parse(secondStringNumber), operatorSymbol);
-            uimanager.ShowMessage(firstStringNumber, operatorSymbol, secondStringNumber, result);
+            ShowMessage(firstStringNumber, operatorSymbol, secondStringNumber, result);
         }
     }
 }
