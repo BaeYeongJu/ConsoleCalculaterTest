@@ -6,9 +6,20 @@ namespace ConsoleCalculator
 {
     public class UIManager
     {
-        private void ShowMessage(string firstStringNumber, double result)
+        private void ShowMessage(string firstStringNumber, string operatorSymbol, double result)
         {
-            Console.WriteLine($"결과: 1/({double.Parse(firstStringNumber)}) = {result} ");
+            switch (operatorSymbol)
+            {
+                case "r":
+                    Console.WriteLine($"결과: 1/({double.Parse(firstStringNumber)}) = {result} ");
+                    break;
+                case "s":
+                    Console.WriteLine($"결과: √({double.Parse(firstStringNumber)}) = {result} ");
+                    break;
+                case "p":
+                    Console.WriteLine($"결과: sqr({double.Parse(firstStringNumber)}) = {result} ");
+                    break;
+            }
         }
 
         private void ShowMessage(string firstStringNumber, string operatorSymbol, string secondStringNumber, double result)
@@ -22,7 +33,7 @@ namespace ConsoleCalculator
         public void ShowResult(CalculateManager calculateManager, string firstStringNumber, string operatorSymbol, double result)
         {
             result = calculateManager.Calculate(double.Parse(firstStringNumber), operatorSymbol);
-            ShowMessage(firstStringNumber, result);
+            ShowMessage(firstStringNumber, operatorSymbol, result);
         }
 
         public void ShowResult(CalculateManager calculateManager, string firstStringNumber, string secondStringNumber, string operatorSymbol, double result)
