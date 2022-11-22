@@ -112,10 +112,18 @@ namespace TestProject
 
         [TestMethod]
         [DataRow(0, 3, ".")]
-        public void CalculateDotOperatorTest(double a, double b, string operatorSymbol)
+        public void CalculateDecimalPointOperatorTest(double a, double b, string operatorSymbol)
         {
             string result = (a).ToString() + operatorSymbol + b.ToString();
             Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), double.Parse(result));
+        }
+
+        [TestMethod]
+        [DataRow(3, "r")]
+        public void CalculateReciprocalOperatorTest(double a, string operatorSymbol)
+        {
+            double result = 1 / (a);
+            Debug.WriteLine(result);
         }
 
 

@@ -18,6 +18,16 @@ namespace ConsoleCalculator
                 Console.WriteLine("결과: 숫자 잘못 입력됨");
         }
 
+        public double Calculate(double firstNumber, string operatorSymbol)
+        {
+            switch (operatorSymbol)
+            {
+                case "r":
+                    return Reciprocal(firstNumber);
+            }
+            return 0;
+        }
+
         public double Calculate(double firstNumber, double secondNumber, string operatorSymbol)
         {
             switch (operatorSymbol)
@@ -35,7 +45,7 @@ namespace ConsoleCalculator
                 case "n":
                     return Negative(firstNumber, secondNumber);
                 case ".":
-                    return ShowDot(firstNumber, secondNumber);
+                    return DecimalPoint(firstNumber, secondNumber);
             }
             return 0;
         }
@@ -71,11 +81,24 @@ namespace ConsoleCalculator
             return double.Parse(result);
         }
 
-        public double ShowDot(double firstNumber, double secondNumber)
+        public double DecimalPoint(double firstNumber, double secondNumber)
         {
             string operatorSymbol = ".";
             string result = (firstNumber).ToString() + operatorSymbol+ secondNumber.ToString();
             return double.Parse(result);
+        }
+
+        public double Reciprocal(double firstNumber)
+        {
+            double result = 1 / (firstNumber);
+            return result;
+        }
+
+        public bool IsReciprocalOperator(string operatorSymbol)
+        {
+            if (operatorSymbol == "r")
+                return false;
+            return true;
         }
     }
 }
