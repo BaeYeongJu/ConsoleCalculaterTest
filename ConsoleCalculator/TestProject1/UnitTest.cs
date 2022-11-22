@@ -123,9 +123,8 @@ namespace TestProject
         public void CalculateReciprocalOperatorTest(double a, string operatorSymbol)
         {
             double result = 1 / (a);
-            Debug.WriteLine(result);
+            Assert.AreEqual(calculator.Calculate(a, operatorSymbol), result);
         }
-
 
         [TestCleanup()]
         public void Cleanup()
