@@ -96,9 +96,7 @@ namespace ConsoleCalculator
 
         public bool IsReciprocalOperator(string operatorSymbol)
         {
-            if (operatorSymbol == "r")
-                return false;
-            return true;
+            return operatorSymbol == "r" ? true : false;
         }
     }
 }
