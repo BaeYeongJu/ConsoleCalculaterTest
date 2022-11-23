@@ -127,15 +127,10 @@ namespace TestProject
         [TestMethod]
         [DataRow("20")]
         [DataRow("999")]
+        [DataRow("+/")]
         public void InputNotOperatorTest(string inputOperator)
         {
-            string[] operatorArray = new string[] { "+", "-", "*", "/", "%", "n", ".", "r", "s", "p" };
-
-            foreach(string operatorValue in operatorArray)
-            {
-                if (operatorValue != inputOperator)
-                    Assert.AreEqual(operatorValue, inputOperator);
-            }
+            Assert.AreNotEqual(calculator.IsInputOperatorCorrect(inputOperator), inputOperator);
         }
 
         [TestCleanup()]
