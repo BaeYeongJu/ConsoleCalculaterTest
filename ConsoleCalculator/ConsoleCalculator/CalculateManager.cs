@@ -24,6 +24,10 @@ namespace ConsoleCalculator
             {
                 case "r":
                     return Reciprocal(firstNumber);
+                case "s":
+                    return Sqrt(firstNumber);
+                case "p":
+                    return Pow(firstNumber);
             }
             return 0;
         }
@@ -94,9 +98,21 @@ namespace ConsoleCalculator
             return result;
         }
 
-        public bool IsReciprocalOperator(string operatorSymbol)
+        public double Sqrt(double firstNumber)
         {
-            return operatorSymbol == "r" ? true : false;
+            double result = Math.Sqrt(firstNumber);
+            return result;
+        }
+
+        public double Pow(double firstNumber)
+        {
+            double result = Math.Pow(firstNumber, 2);
+            return result;
+        }
+
+        public bool IsOperatorNotNeedSceondNumber(string operatorSymbol)
+        {
+            return operatorSymbol == "s" || operatorSymbol == "r" || operatorSymbol == "p";
         }
     }
 }
