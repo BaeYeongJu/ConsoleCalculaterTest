@@ -6,16 +6,22 @@ namespace ConsoleCalculator
 {
     public class CalculateManager
     {
-        private bool IsNumberDoubleType(string stringNumber)
+        public static bool IsNumberDoubleType(string stringNumber)
         {
             bool result = double.TryParse(stringNumber, out _);
             return result;
         }
 
-        public void ShowErrorMessage(string stringNumber)
+        public bool IsInputOperatorCorrect(string inputOperator)
         {
-            if (!IsNumberDoubleType(stringNumber))
-                Console.WriteLine("결과: 숫자 잘못 입력됨");
+            string[] operatorArray = new string[] { "+", "-", "*", "/", "%", "n", ".", "r", "s", "p" };
+
+            foreach (string operatorValue in operatorArray)
+            {
+                if (operatorValue == inputOperator)
+                    return true;
+            }
+            return false;
         }
 
         public double Calculate(double firstNumber, string operatorSymbol)
@@ -51,7 +57,7 @@ namespace ConsoleCalculator
                 case ".":
                     return DecimalPoint(firstNumber, secondNumber);
             }
-            return 0;
+            return double.NaN;
         }
 
         public double Add(double firstNumber, double secondNumber)
