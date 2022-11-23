@@ -107,12 +107,35 @@ namespace TestProject
                 new object[] { 233, 16.3, "/", 233 / 16.3 },
                 new object[] { 3, 4.3, "%", 3 % 4.3 },
                 new object[] { 24, 16.3, "%", 24 % 16.3 },
-                new object[] { 24, 16, ".", 24.16)},
-                new object[] { 24, 16, "n", -2416)},
+                new object[] { 24, 0, "%", double.NaN },
+                new object[] { 24, 0, "/", double.NaN },
+                new object[] { 24, 16, ".", 24.16 },
+                new object[] { 24, 16, "n", -2416 },
                 //연산자 우선순위 앞에서 부터 계산, string 앞에 부터 바뀌고, 순서가 생김
 
                 //암시적 변환 -> 박싱
             };
+        }
+
+        [TestMethod]
+        public void InputEnterkeyExit()
+        {
+            var consoleKey = ConsoleKey.Enter;
+            Assert.AreEqual(ConsoleKey.Enter, consoleKey);
+        }
+
+        [TestMethod]
+        [DataRow("20")]
+        [DataRow("999")]
+        public void InputNotOperatorTest(string inputOperator)
+        {
+            string[] operatorArray = new string[] { "+", "-", "*", "/", "%", "n", ".", "r", "s", "p" };
+
+            foreach(string operatorValue in operatorArray)
+            {
+                if (operatorValue != inputOperator)
+                    Assert.AreEqual(operatorValue, inputOperator);
+            }
         }
 
         [TestCleanup()]
