@@ -27,7 +27,7 @@ namespace ConsoleCalculator
                 case "s":
                     return Sqrt(firstNumber);
                 case "p":
-                    return Pow(firstNumber);
+                    return SquareRoot2(firstNumber);
             }
             return 0;
         }
@@ -81,15 +81,12 @@ namespace ConsoleCalculator
 
         public double Negative(double firstNumber, double secondNumber)
         {
-            string result = "" + -firstNumber + secondNumber;
-            return double.Parse(result);
+            return double.Parse($"{-firstNumber}{secondNumber}");
         }
 
         public double DecimalPoint(double firstNumber, double secondNumber)
         {
-            string operatorSymbol = ".";
-            string result = "" + firstNumber + operatorSymbol + secondNumber;
-            return double.Parse(result);
+            return double.Parse($"{firstNumber}.{secondNumber}");
         }
 
         public double Reciprocal(double firstNumber)
@@ -104,7 +101,7 @@ namespace ConsoleCalculator
             return result;
         }
 
-        public double Pow(double firstNumber)
+        public double SquareRoot2(double firstNumber) 
         {
             double result = Math.Pow(firstNumber, 2);
             return result;
