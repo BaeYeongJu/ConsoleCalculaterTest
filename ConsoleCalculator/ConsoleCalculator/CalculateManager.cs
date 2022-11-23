@@ -27,7 +27,7 @@ namespace ConsoleCalculator
                 case "s":
                     return Sqrt(firstNumber);
                 case "p":
-                    return Pow(firstNumber);
+                    return SquareRoot2(firstNumber);
             }
             return 0;
         }
@@ -101,7 +101,7 @@ namespace ConsoleCalculator
             return result;
         }
 
-        public double Pow(double firstNumber)
+        public double SquareRoot2(double firstNumber) 
         {
             double result = Math.Pow(firstNumber, 2);
             return result;
