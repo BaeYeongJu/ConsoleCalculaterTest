@@ -81,15 +81,12 @@ namespace ConsoleCalculator
 
         public double Negative(double firstNumber, double secondNumber)
         {
-            string result = "" + -firstNumber + secondNumber;
-            return double.Parse(result);
+            return double.Parse($"{-firstNumber}{secondNumber}");
         }
 
         public double DecimalPoint(double firstNumber, double secondNumber)
         {
-            string operatorSymbol = ".";
-            string result = "" + firstNumber + operatorSymbol + secondNumber;
-            return double.Parse(result);
+            return double.Parse($"{firstNumber}.{secondNumber}");
         }
 
         public double Reciprocal(double firstNumber)
