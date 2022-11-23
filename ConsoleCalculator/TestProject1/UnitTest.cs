@@ -107,13 +107,11 @@ namespace TestProject
                 new object[] { 233, 16.3, "/", 233 / 16.3 },
                 new object[] { 3, 4.3, "%", 3 % 4.3 },
                 new object[] { 24, 16.3, "%", 24 % 16.3 },
-                new object[] { 24, 16, ".", double.Parse(24 + "." + 16)},
-                new object[] { 24, 16, "n", double.Parse(-24 + "" + 16)},
-                new object[] { 24, 16, "n", double.Parse("" + -24 + 16)},
+                new object[] { 24, 16, ".", 24.16)},
+                new object[] { 24, 16, "n", -2416)},
                 //연산자 우선순위 앞에서 부터 계산, string 앞에 부터 바뀌고, 순서가 생김
 
                 //암시적 변환 -> 박싱
-                //미리 방지하기 위해서
             };
         }
 
