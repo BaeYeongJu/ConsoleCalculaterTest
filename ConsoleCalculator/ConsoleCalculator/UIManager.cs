@@ -20,6 +20,9 @@ namespace ConsoleCalculator
                 case "p":
                     Console.WriteLine($"결과: sqr({double.Parse(firstStringNumber)}) = {result} ");
                     break;
+                case "c":
+                    Console.WriteLine($"결과: {result} ");
+                    break;
             }
         }
 
