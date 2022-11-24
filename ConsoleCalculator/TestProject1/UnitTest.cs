@@ -128,9 +128,9 @@ namespace TestProject
         [DataRow("20")]
         [DataRow("999")]
         [DataRow("+/")]
-        public void InputNotOperatorTest(string inputOperator)
+        public void InputOperatorEqualsTest(string inputOperator)
         {
-            Assert.AreNotEqual(calculator.IsInputOperatorCorrect(inputOperator), inputOperator);
+            Assert.IsFalse(calculator.IsInputOperatorCorrect(inputOperator));
         }
 
         [TestCleanup()]
