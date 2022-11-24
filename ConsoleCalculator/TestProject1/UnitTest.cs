@@ -81,7 +81,8 @@ namespace TestProject
                 new object[] { 3, "r", 1/(double)3 },
                 new object[] { 53, "s", Math.Sqrt(53) },
                 new object[] { 153, "s", Math.Sqrt(153) },
-                new object[] { 10, "p", Math.Pow(10,2) }
+                new object[] { 10, "p", Math.Pow(10,2) },
+                new object[] { 10, "c", 0 }
             };
         }
 
@@ -99,6 +100,7 @@ namespace TestProject
             {
                 new object[] { 20, 10, "+", 20+10 },
                 new object[] { 3.2, 9, "+", 3.2+9 },
+                new object[] { 3.2, 9.3234, "+", 3.2+9.3234 },
                 new object[] { 4, 345, "-", 4-345},
                 new object[] { 29.2, 10.3, "-", 29.2 - 10.3 },
                 new object[] { 4, 67, "*", 4 * 67 },
@@ -108,7 +110,7 @@ namespace TestProject
                 new object[] { 3, 4.3, "%", 3 % 4.3 },
                 new object[] { 24, 16.3, "%", 24 % 16.3 },
                 new object[] { 24, 0, "%", double.NaN },
-                new object[] { 24, 0, "/", double.NaN },
+                new object[] { 24, 0, "/", double.PositiveInfinity },
                 new object[] { 24, 16, ".", 24.16 },
                 new object[] { 24, 16, "n", -2416 },
                 //연산자 우선순위 앞에서 부터 계산, string 앞에 부터 바뀌고, 순서가 생김
