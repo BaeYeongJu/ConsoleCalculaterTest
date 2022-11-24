@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ConsoleCalculator
 {
+    //메세지, UI 버튼 관련
     public class UIManager
     {
         private void ShowMessage(string firstStringNumber, string operatorSymbol, double result)
@@ -40,6 +41,12 @@ namespace ConsoleCalculator
         {
             result = calculateManager.Calculate(double.Parse(firstStringNumber), double.Parse(secondStringNumber), operatorSymbol);
             ShowMessage(firstStringNumber, operatorSymbol, secondStringNumber, result);
+        }
+
+        public void ShowErrorMessage()
+        {
+            Console.WriteLine("잘못 입력되었습니다.");
+            Environment.Exit(0);
         }
     }
 }
