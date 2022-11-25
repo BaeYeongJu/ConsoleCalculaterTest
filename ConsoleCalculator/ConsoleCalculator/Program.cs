@@ -23,7 +23,7 @@ namespace ConsoleCalculator
             if (!CalculateManager.IsNumberDoubleType(firstStringNumber))
                 uiManager.ShowErrorMessage();
 
-            Console.Write("연산자 입력 (+,-,*,/,%,n,.,r,s,p):");
+            Console.Write("연산자 입력 (+, -, *, /, %, n, ., r, s, p, c):");
             operatorSymbol = Console.ReadLine();
 
             if (!calculateManager.IsInputOperatorCorrect(operatorSymbol))

@@ -14,7 +14,7 @@ namespace ConsoleCalculator
 
         public bool IsInputOperatorCorrect(string inputOperator)
         {
-            string[] operatorArray = new string[] { "+", "-", "*", "/", "%", "n", ".", "r", "s", "p" };
+            string[] operatorArray = new string[] { "+", "-", "*", "/", "%", "n", ".", "r", "s", "p" ,"c"};
 
             foreach (string operatorValue in operatorArray)
             {
@@ -34,6 +34,8 @@ namespace ConsoleCalculator
                     return Sqrt(firstNumber);
                 case "p":
                     return SquareRoot2(firstNumber);
+                case "c":
+                    return DeleteFirstNumber();
             }
             return 0;
         }
@@ -113,9 +115,11 @@ namespace ConsoleCalculator
             return result;
         }
 
+        public double DeleteFirstNumber() => 0;
+
         public bool IsOperatorNotNeedSceondNumber(string operatorSymbol)
         {
-            return operatorSymbol == "s" || operatorSymbol == "r" || operatorSymbol == "p";
+            return operatorSymbol == "s" || operatorSymbol == "r" || operatorSymbol == "p" || operatorSymbol == "c";
         }
     }
 }
