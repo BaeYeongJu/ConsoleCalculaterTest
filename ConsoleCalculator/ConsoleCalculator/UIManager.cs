@@ -51,5 +51,37 @@ namespace ConsoleCalculator
             Console.WriteLine("잘못 입력되었습니다.");
             Environment.Exit(0);
         }
+
+        //0 : MS 메모리 저장, 1 :M+ 메모리 더하기, 2 : M- 메모리 빼기, 3:MC : 메모리 지우기 4 : MR 메모리 불려오기
+        static public void ShowMemoryList(int currentIndex)
+        {
+            Console.Clear();
+            for (int i = 0; i < 5; i++)
+            {
+                Console.ForegroundColor = i == currentIndex ? ConsoleColor.Blue : ConsoleColor.Green;
+                Console.WriteLine("List : " + i);
+            }
+
+            switch (currentIndex)
+            {
+                case 0:
+                    Console.WriteLine("메모리 저장");
+                    break;
+                case 1:
+                    Console.WriteLine("메모리 더하기");
+                    break;
+                case 2:
+                    Console.WriteLine("메모리 빼기");
+                    break;
+                case 3:
+                    Console.WriteLine("메모리 지우기");
+                    break;
+                case 4:
+                    Console.WriteLine("메모리 불려오기");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
