@@ -12,13 +12,18 @@ namespace ConsoleCalculator
             string secondStringNumber = string.Empty;
             string operatorSymbol = string.Empty;
             double result = 0;
+            int currentIndex = 0;
 
             CalculateManager calculateManager = new CalculateManager();
             UIManager uiManager = new UIManager();
 
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("[Calculater]");
-            Console.Write("첫번째 숫자 입력 :");            
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
+            SetCurrentIndexKey(currentIndex);
+
+            Console.Write("@첫번째 숫자 입력 :");
             firstStringNumber = Console.ReadLine();
             if (!CalculateManager.IsNumberDoubleType(firstStringNumber))
                 uiManager.ShowErrorMessage();
@@ -42,6 +47,23 @@ namespace ConsoleCalculator
                     uiManager.ShowErrorMessage();
 
                 uiManager.ShowResult(calculateManager, firstStringNumber, secondStringNumber, operatorSymbol, result);
+
+            }
+        }
+
+        //콘솔 키값 설정
+        static private void SetCurrentIndexKey(int currentIndex)
+        {
+            while (true)
+            {
+                var keyInfo = Console.ReadKey();
+                if (keyInfo.Key == ConsoleKey.Escape)
+                    break;
+                if (keyInfo.Key == ConsoleKey.UpArrow)
+                    currentIndex--;
+                if (keyInfo.Key == ConsoleKey.DownArrow)
+                    currentIndex++;
+                UIManager.ShowMemoryList(currentIndex);
             }
         }
     }
