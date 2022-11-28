@@ -12,51 +12,51 @@ namespace ConsoleCalculator
             return result;
         }
 
-        public bool IsInputOperatorCorrect(string inputOperator)
+        public bool IsInputKeyOperatorCorrect(ConsoleKey consoleKey)
         {
-            string[] operatorArray = new string[] { "+", "-", "*", "/", "%", "n", ".", "r", "s", "p" ,"c"};
-
-            foreach (string operatorValue in operatorArray)
+            ConsoleKey[] operatorKeyArray = new ConsoleKey[] { ConsoleKey.D5, ConsoleKey.D8, ConsoleKey.OemPlus, ConsoleKey.OemMinus, ConsoleKey.OemPeriod, ConsoleKey.Oem2, ConsoleKey.N, ConsoleKey.R, ConsoleKey.S, ConsoleKey.P, ConsoleKey.C };
+            
+            foreach (var operatorKey in operatorKeyArray)
             {
-                if (operatorValue == inputOperator)
+                if (operatorKey == consoleKey)
                     return true;
             }
             return false;
         }
 
-        public double Calculate(double firstNumber, string operatorSymbol)
+        public double Calculate(double firstNumber, ConsoleKey consoleKey)
         {
-            switch (operatorSymbol)
+            switch (consoleKey)
             {
-                case "r":
+                case ConsoleKey.R:
                     return Reciprocal(firstNumber);
-                case "s":
+                case ConsoleKey.S:
                     return Sqrt(firstNumber);
-                case "p":
+                case ConsoleKey.P:
                     return SquareRoot2(firstNumber);
-                case "c":
+                case ConsoleKey.C:
                     return DeleteFirstNumber();
             }
             return 0;
         }
 
-        public double Calculate(double firstNumber, double secondNumber, string operatorSymbol)
+        public double Calculate(double firstNumber, double secondNumber, ConsoleKey consoleKey)
         {
-            switch (operatorSymbol)
+            switch (consoleKey)
             {
-                case "+":
+                case ConsoleKey.OemPlus:
                     return Add(firstNumber, secondNumber);
-                case "-":
+                case ConsoleKey.OemMinus:
                     return Sub(firstNumber, secondNumber);
-                case "*":
+                case ConsoleKey.D8:
                     return Multiplication(firstNumber, secondNumber);
-                case "/":
+                case ConsoleKey.Oem2:
                     return Division(firstNumber, secondNumber);
-                case "%":
+                case ConsoleKey.D5:
                     return Remainder(firstNumber, secondNumber);
-                case "n":
+                case ConsoleKey.N:
                     return Negative(firstNumber, secondNumber);
-                case ".":
+                case ConsoleKey.OemPeriod:
                     return DecimalPoint(firstNumber, secondNumber);
             }
             return double.NaN;
@@ -117,9 +117,20 @@ namespace ConsoleCalculator
 
         public double DeleteFirstNumber() => 0;
 
-        public bool IsOperatorNotNeedSceondNumber(string operatorSymbol)
+        public bool IsInputKeyNotNeedSceondNumber(ConsoleKey consoleKey)
         {
-            return operatorSymbol == "s" || operatorSymbol == "r" || operatorSymbol == "p" || operatorSymbol == "c";
+            return consoleKey == ConsoleKey.S || consoleKey == ConsoleKey.R || consoleKey == ConsoleKey.P || consoleKey == ConsoleKey.C;
+        }
+
+        public ConsoleKey InputKey()
+        {
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                ConsoleKey consoleKey = keyInfo.Key;
+
+                return consoleKey;
+            }
         }
     }
 }
