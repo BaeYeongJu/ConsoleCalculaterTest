@@ -69,50 +69,50 @@ namespace TestProject
         //첫번째 숫자 값 테스트 코드
         [TestMethod]
         [DynamicData(nameof(CalculateOneInputData),DynamicDataSourceType.Method)]
-        public void CalculateOneInputTest(double a, string operatorSymbol, double result)
+        public void CalculateOneInputTest(double a, ConsoleKey consoleKey, double result)
         {
-            Assert.AreEqual(calculator.Calculate(a, operatorSymbol), result);
+            Assert.AreEqual(calculator.Calculate(a, consoleKey), result);
         }
 
         public static IEnumerable<object[]> CalculateOneInputData()
         {
             return new[]
             {
-                new object[] { 3, "r", 1/(double)3 },
-                new object[] { 53, "s", Math.Sqrt(53) },
-                new object[] { 153, "s", Math.Sqrt(153) },
-                new object[] { 10, "p", Math.Pow(10,2) },
-                new object[] { 10, "c", 0 }
+                new object[] { 3, ConsoleKey.R , 1/(double)3 },
+                new object[] { 53, ConsoleKey.S , Math.Sqrt(53) },
+                new object[] { 153, ConsoleKey.S , Math.Sqrt(153) },
+                new object[] { 10, ConsoleKey.P , Math.Pow(10,2) },
+                new object[] { 10, ConsoleKey.C , 0 }
             };
         }
 
         //첫번째와 두번째 숫자 테스트 코드
         [TestMethod]
         [DynamicData(nameof(CalculateTwoInputData), DynamicDataSourceType.Method)]
-        public void CalculateTwoInputTest(double a, double b, string operatorSymbol, double result)
+        public void CalculateTwoInputTest(double a, double b, ConsoleKey consoleKey, double result)
         {
-            Assert.AreEqual(calculator.Calculate(a, b, operatorSymbol), result);
+            Assert.AreEqual(calculator.Calculate(a, b, consoleKey), result);
         }
 
         public static IEnumerable<object[]> CalculateTwoInputData()
         {
             return new[]
             {
-                new object[] { 20, 10, "+", 20+10 },
-                new object[] { 3.2, 9, "+", 3.2+9 },
-                new object[] { 3.2, 9.3234, "+", 3.2+9.3234 },
-                new object[] { 4, 345, "-", 4-345},
-                new object[] { 29.2, 10.3, "-", 29.2 - 10.3 },
-                new object[] { 4, 67, "*", 4 * 67 },
-                new object[] { 22.2, 45.3, "*", 22.2 * 45.3 },
-                new object[] { 23, 19.3, "/", 23 / 19.3 },
-                new object[] { 233, 16.3, "/", 233 / 16.3 },
-                new object[] { 3, 4.3, "%", 3 % 4.3 },
-                new object[] { 24, 16.3, "%", 24 % 16.3 },
-                new object[] { 24, 0, "%", double.NaN },
-                new object[] { 24, 0, "/", double.PositiveInfinity },
-                new object[] { 24, 16, ".", 24.16 },
-                new object[] { 24, 16, "n", -2416 },
+                new object[] { 20, 10, ConsoleKey.OemPlus, 20+10 },
+                new object[] { 3.2, 9, ConsoleKey.OemPlus, 3.2+9 },
+                new object[] { 3.2, 9.3234, ConsoleKey.OemPlus, 3.2+9.3234 },
+                new object[] { 4, 345, ConsoleKey.OemMinus, 4-345},
+                new object[] { 29.2, 10.3, ConsoleKey.OemMinus, 29.2 - 10.3 },
+                new object[] { 4, 67, ConsoleKey.D8, 4 * 67 },
+                new object[] { 22.2, 45.3, ConsoleKey.D8, 22.2 * 45.3 },
+                new object[] { 23, 19.3, ConsoleKey.Oem2, 23 / 19.3 },
+                new object[] { 233, 16.3, ConsoleKey.Oem2, 233 / 16.3 },
+                new object[] { 3, 4.3, ConsoleKey.D5, 3 % 4.3 },
+                new object[] { 24, 16.3, ConsoleKey.D5, 24 % 16.3 },
+                new object[] { 24, 0, ConsoleKey.D5, double.NaN },
+                new object[] { 24, 0, ConsoleKey.Oem2, double.PositiveInfinity },
+                new object[] { 24, 16, ConsoleKey.OemPeriod, 24.16 },
+                new object[] { 24, 16, ConsoleKey.N, -2416 },
                 //연산자 우선순위 앞에서 부터 계산, string 앞에 부터 바뀌고, 순서가 생김
 
                 //암시적 변환 -> 박싱
@@ -127,12 +127,12 @@ namespace TestProject
         }
 
         [TestMethod]
-        [DataRow("20")]
-        [DataRow("999")]
-        [DataRow("+/")]
-        public void InputOperatorEqualsTest(string inputOperator)
+        [DataRow(ConsoleKey.D6)]
+        [DataRow(ConsoleKey.P)]
+        [DataRow(ConsoleKey.Enter)]
+        public void InputOperatorEqualsTest(ConsoleKey consoleKey)
         {
-            Assert.IsFalse(calculator.IsInputOperatorCorrect(inputOperator));
+            Assert.IsFalse(calculator.IsInputKeyOperatorCorrect(consoleKey));
         }
 
         [TestCleanup()]
