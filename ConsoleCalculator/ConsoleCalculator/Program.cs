@@ -10,28 +10,29 @@ namespace ConsoleCalculator
         {
             string firstStringNumber = string.Empty;
             string secondStringNumber = string.Empty;
-            string operatorSymbol = string.Empty;
             double result = 0;
+            ConsoleKey inputKey;
 
             CalculateManager calculateManager = new CalculateManager();
             UIManager uiManager = new UIManager();
 
             Console.WriteLine("[Calculater]");
-            Console.Write("첫번째 숫자 입력 :");            
+            Console.Write("첫번째 숫자 입력 :");
 
             firstStringNumber = Console.ReadLine();
             if (!CalculateManager.IsNumberDoubleType(firstStringNumber))
                 uiManager.ShowErrorMessage();
 
             Console.Write("연산자 입력 (+, -, *, /, %, n, ., r, s, p, c):");
-            operatorSymbol = Console.ReadLine();
+            inputKey = calculateManager.InputKey();
+            Console.WriteLine();
 
-            if (!calculateManager.IsInputOperatorCorrect(operatorSymbol))
+            if (!calculateManager.IsInputKeyOperatorCorrect(inputKey))
                 uiManager.ShowErrorMessage();
 
-            if (calculateManager.IsOperatorNotNeedSceondNumber(operatorSymbol))
+            if (calculateManager.IsInputKeyNotNeedSceondNumber(inputKey))
             {
-                uiManager.ShowResult(calculateManager, firstStringNumber, operatorSymbol, result);
+                uiManager.ShowResult(calculateManager, firstStringNumber, inputKey, result);
             }
             else
             {
@@ -41,7 +42,7 @@ namespace ConsoleCalculator
                 if (!CalculateManager.IsNumberDoubleType(secondStringNumber))
                     uiManager.ShowErrorMessage();
 
-                uiManager.ShowResult(calculateManager, firstStringNumber, secondStringNumber, operatorSymbol, result);
+                uiManager.ShowResult(calculateManager, firstStringNumber, secondStringNumber, inputKey, result);
             }
         }
     }

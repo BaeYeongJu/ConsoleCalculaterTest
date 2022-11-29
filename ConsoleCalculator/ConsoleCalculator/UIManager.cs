@@ -7,49 +7,81 @@ namespace ConsoleCalculator
     //메세지, UI 버튼 관련
     public class UIManager
     {
-        private void ShowMessage(string firstStringNumber, string operatorSymbol, double result)
+        private void ShowMessage(string firstStringNumber, ConsoleKey consoleKey, double result)
         {
-            switch (operatorSymbol)
+            switch (consoleKey)
             {
-                case "r":
+                case ConsoleKey.R:
                     Console.WriteLine($"결과: 1/({double.Parse(firstStringNumber)}) = {result} ");
                     break;
-                case "s":
+                case ConsoleKey.S:
                     Console.WriteLine($"결과: √({double.Parse(firstStringNumber)}) = {result} ");
                     break;
-                case "p":
+                case ConsoleKey.P:
                     Console.WriteLine($"결과: sqr({double.Parse(firstStringNumber)}) = {result} ");
                     break;
-                case "c":
+                case ConsoleKey.C:
                     Console.WriteLine($"결과: {result} ");
                     break;
             }
         }
 
-        private void ShowMessage(string firstStringNumber, string operatorSymbol, string secondStringNumber, double result)
+        //. , n
+        private void ShowMessage(string firstStringNumber, ConsoleKey consoleKey, string secondStringNumber, double result)
         {
-            if (operatorSymbol == "." || operatorSymbol == "n")
+            if (consoleKey == ConsoleKey.OemPeriod || consoleKey == ConsoleKey.N)
                 Console.WriteLine($"결과: {result} ");
             else
-                Console.WriteLine($"결과: {double.Parse(firstStringNumber) + operatorSymbol + double.Parse(secondStringNumber)} = {result} ");
+                Console.WriteLine($"결과: {double.Parse(firstStringNumber) + GetConsoleKeyToString(consoleKey) + double.Parse(secondStringNumber)} = {result} ");
         }
 
-        public void ShowResult(CalculateManager calculateManager, string firstStringNumber, string operatorSymbol, double result)
+        public void ShowResult(CalculateManager calculateManager, string firstStringNumber, ConsoleKey consoleKey, double result)
         {
-            result = calculateManager.Calculate(double.Parse(firstStringNumber), operatorSymbol);
-            ShowMessage(firstStringNumber, operatorSymbol, result);
+            result = calculateManager.Calculate(double.Parse(firstStringNumber), consoleKey);
+            ShowMessage(firstStringNumber, consoleKey, result);
         }
 
-        public void ShowResult(CalculateManager calculateManager, string firstStringNumber, string secondStringNumber, string operatorSymbol, double result)
+        public void ShowResult(CalculateManager calculateManager, string firstStringNumber, string secondStringNumber, ConsoleKey consoleKey, double result)
         {
-            result = calculateManager.Calculate(double.Parse(firstStringNumber), double.Parse(secondStringNumber), operatorSymbol);
-            ShowMessage(firstStringNumber, operatorSymbol, secondStringNumber, result);
+            result = calculateManager.Calculate(double.Parse(firstStringNumber), double.Parse(secondStringNumber), consoleKey);
+            ShowMessage(firstStringNumber, consoleKey, secondStringNumber, result);
         }
 
         public void ShowErrorMessage()
         {
             Console.WriteLine("잘못 입력되었습니다.");
             Environment.Exit(0);
+        }
+
+        private string GetConsoleKeyToString(ConsoleKey consoleKey)
+        {
+            switch (consoleKey)
+            {
+                case ConsoleKey.D5:
+                    return "%";
+                case ConsoleKey.D8:
+                    return "*";
+                case ConsoleKey.OemPlus:
+                    return "+";
+                case ConsoleKey.OemMinus:
+                    return "-";
+                case ConsoleKey.OemPeriod:
+                    return ".";
+                case ConsoleKey.Oem2:
+                    return "/";
+                case ConsoleKey.N:
+                    return "n";
+                case ConsoleKey.R:
+                    return "r";
+                case ConsoleKey.S:
+                    return "s";
+                case ConsoleKey.P:
+                    return "p";
+                case ConsoleKey.C:
+                    return "c";
+            }
+
+            return "null";
         }
     }
 }
