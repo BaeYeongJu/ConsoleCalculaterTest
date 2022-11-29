@@ -4,8 +4,11 @@ using System.Text;
 
 namespace ConsoleCalculator
 {
+    //계산 기능만
     public class CalculateManager
     {
+        public CalculateManager() { }
+
         public static bool IsNumberDoubleType(string stringNumber)
         {
             bool result = double.TryParse(stringNumber, out _);
@@ -117,19 +120,42 @@ namespace ConsoleCalculator
 
         public double DeleteFirstNumber() => 0;
 
-        public bool IsInputKeyNotNeedSceondNumber(ConsoleKey consoleKey)
+        public void CalculateMemory(ConsoleKey consoleKey , MemoryManager memory, double firstMemory, double lastMemory)
         {
-            return consoleKey == ConsoleKey.S || consoleKey == ConsoleKey.R || consoleKey == ConsoleKey.P || consoleKey == ConsoleKey.C;
-        }
-
-        public ConsoleKey InputKey()
-        {
-            while (true)
+            int addCount = 0;
+            int subCount = 0;
+            switch (consoleKey)
             {
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
-                ConsoleKey consoleKey = keyInfo.Key;
-
-                return consoleKey;
+                case ConsoleKey.F1:
+                    memory.SaveMemory(firstMemory, lastMemory); 
+                    addCount = 0;
+                    subCount = 0;
+                    return ;
+                case ConsoleKey.F2:
+                    memory.LoadMemory(firstMemory);
+                    addCount = 0;
+                    subCount = 0;
+                    return ;
+                case ConsoleKey.F3:
+                    firstMemory = memory.ClearMemory();
+                    addCount = 0;
+                    subCount = 0;
+                    return ;
+                case ConsoleKey.F4:
+                    subCount = 0;
+                    addCount++;
+                    memory.AddMemory(firstMemory, addCount);
+                    return ;
+                case ConsoleKey.F5:
+                    addCount = 0;
+                    subCount++;
+                    memory.SubMemory(firstMemory, subCount);
+                    return ;
+                default :
+                    Environment.Exit(0);
+                    addCount = 0;
+                    subCount = 0;
+                    return ;
             }
         }
     }
