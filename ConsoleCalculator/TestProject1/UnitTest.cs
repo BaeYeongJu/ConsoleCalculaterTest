@@ -14,11 +14,13 @@ namespace TestProject
         Assert : 예상 값과 일치하는지 확인*/
 
         private CalculateManager calculator;
+        private MemoryManager memory;
 
         [TestInitialize()]
         public void Initialize()
         {
             calculator = new CalculateManager();
+            memory = new MemoryManager();
         }
 
         [TestMethod]
@@ -66,7 +68,6 @@ namespace TestProject
             Assert.AreEqual(calculator.Remainder(a, b), a % b);
         }
 
-        //첫번째 숫자 값 테스트 코드
         [TestMethod]
         [DynamicData(nameof(CalculateOneInputData),DynamicDataSourceType.Method)]
         public void CalculateOneInputTest(double a, ConsoleKey consoleKey, double result)
@@ -128,17 +129,56 @@ namespace TestProject
 
         [TestMethod]
         [DataRow(ConsoleKey.D6)]
-        [DataRow(ConsoleKey.P)]
+        [DataRow(ConsoleKey.X)]
         [DataRow(ConsoleKey.Enter)]
         public void InputOperatorEqualsTest(ConsoleKey consoleKey)
         {
             Assert.IsFalse(calculator.IsInputKeyOperatorCorrect(consoleKey));
         }
 
+        [TestMethod]
+        [DataRow(0, 20, 20)]
+        [DataRow(10, 40, 50)]
+        public void SaveMemoryTest(double first, double later , double result)
+        {
+            Assert.AreEqual(memory.SaveMemory(first, later), result);
+        }
+
+        [TestMethod]
+        [DataRow(20)]
+        [DataRow(40)]
+        public void LoadMemoryTest(double number)
+        {
+            Assert.AreEqual(memory.LoadMemory(number), number);
+        }
+
+        [TestMethod]
+        public void ClearMemoryTest()
+        {
+            Assert.AreEqual(0, memory.ClearMemory());
+        }
+
+        [TestMethod]
+        [DataRow(20, 2 , 40)]
+        [DataRow(20, 3 , 60)]
+        public void AddMemoryTest(double number, int count, double result)
+        {
+            Assert.AreEqual(memory.AddMemory(number, count), result);
+        }
+
+        [TestMethod]
+        [DataRow(40, 2, 20)]
+        [DataRow(60, 3, 20)]
+        public void SubMemoryTest(double number, int count, double result)
+        {
+            Assert.AreEqual(memory.SubMemory(number, count), result);
+        }
+
         [TestCleanup()]
         public void Cleanup()
         {
             calculator = null;
+            memory = null;
         }
     }
 }
