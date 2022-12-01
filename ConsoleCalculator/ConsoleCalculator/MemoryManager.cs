@@ -10,28 +10,28 @@ namespace ConsoleCalculator
     {
         public MemoryManager() { }
 
-        public double SaveMemory(double firstMemory, double lastMemory)
+        public double Save(double firstMemory, double lastMemory)
         {
             firstMemory += lastMemory;
             return firstMemory;
         }
 
-        public double LoadMemory(double result)
+        public double Load(double result)
         {
             return result;
         }
 
-        public double ClearMemory()
+        public double Clear()
         {
             return 0;
         }
 
-        public double AddMemory(double number, int count)
+        public double Add(double number, int count)
         {
             return number * count;
         }
 
-        public double SubMemory(double number, int count)
+        public double Sub(double number, int count)
         {
             return number / count;
         }

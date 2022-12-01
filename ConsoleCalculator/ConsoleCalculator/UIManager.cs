@@ -96,5 +96,16 @@ namespace ConsoleCalculator
 
             return consoleKey;
         }
+
+        public ConsoleKey InputKey(Action<ConsoleKey> key)
+        {
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                ConsoleKey consoleKey = keyInfo.Key;
+
+                key?.Invoke(consoleKey);
+            }
+        }
     }
 }

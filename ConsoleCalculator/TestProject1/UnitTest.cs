@@ -141,7 +141,7 @@ namespace TestProject
         [DataRow(10, 40, 50)]
         public void SaveMemoryTest(double first, double later , double result)
         {
-            Assert.AreEqual(memory.SaveMemory(first, later), result);
+            Assert.AreEqual(memory.Save(first, later), result);
         }
 
         [TestMethod]
@@ -149,13 +149,13 @@ namespace TestProject
         [DataRow(40)]
         public void LoadMemoryTest(double number)
         {
-            Assert.AreEqual(memory.LoadMemory(number), number);
+            Assert.AreEqual(memory.Load(number), number);
         }
 
         [TestMethod]
         public void ClearMemoryTest()
         {
-            Assert.AreEqual(0, memory.ClearMemory());
+            Assert.AreEqual(0, memory.Clear());
         }
 
         [TestMethod]
@@ -163,7 +163,7 @@ namespace TestProject
         [DataRow(20, 3 , 60)]
         public void AddMemoryTest(double number, int count, double result)
         {
-            Assert.AreEqual(memory.AddMemory(number, count), result);
+            Assert.AreEqual(memory.Add(number, count), result);
         }
 
         [TestMethod]
@@ -171,7 +171,7 @@ namespace TestProject
         [DataRow(60, 3, 20)]
         public void SubMemoryTest(double number, int count, double result)
         {
-            Assert.AreEqual(memory.SubMemory(number, count), result);
+            Assert.AreEqual(memory.Sub(number, count), result);
         }
 
         [TestCleanup()]
