@@ -4,8 +4,11 @@ using System.Text;
 
 namespace ConsoleCalculator
 {
+    //계산 기능만
     public class CalculateManager
     {
+        public CalculateManager() { }
+
         public static bool IsNumberDoubleType(string stringNumber)
         {
             bool result = double.TryParse(stringNumber, out _);
@@ -117,20 +120,5 @@ namespace ConsoleCalculator
 
         public double DeleteFirstNumber() => 0;
 
-        public bool IsInputKeyNotNeedSceondNumber(ConsoleKey consoleKey)
-        {
-            return consoleKey == ConsoleKey.S || consoleKey == ConsoleKey.R || consoleKey == ConsoleKey.P || consoleKey == ConsoleKey.C;
-        }
-
-        public ConsoleKey InputKey()
-        {
-            while (true)
-            {
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
-                ConsoleKey consoleKey = keyInfo.Key;
-
-                return consoleKey;
-            }
-        }
     }
 }

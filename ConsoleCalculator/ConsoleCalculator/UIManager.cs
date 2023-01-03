@@ -83,5 +83,18 @@ namespace ConsoleCalculator
 
             return "null";
         }
+
+        public bool IsInputKeyNotNeedSceondNumber(ConsoleKey consoleKey)
+        {
+            return consoleKey == ConsoleKey.S || consoleKey == ConsoleKey.R || consoleKey == ConsoleKey.P || consoleKey == ConsoleKey.C;
+        }
+
+        public ConsoleKey InputKey()
+        {
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            ConsoleKey consoleKey = keyInfo.Key;
+
+            return consoleKey;
+        }
     }
 }

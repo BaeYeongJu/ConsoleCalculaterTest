@@ -24,13 +24,13 @@ namespace ConsoleCalculator
                 uiManager.ShowErrorMessage();
 
             Console.Write("연산자 입력 (+, -, *, /, %, n, ., r, s, p, c):");
-            inputKey = calculateManager.InputKey();
+            inputKey = uiManager.InputKey();
             Console.WriteLine();
 
             if (!calculateManager.IsInputKeyOperatorCorrect(inputKey))
                 uiManager.ShowErrorMessage();
 
-            if (calculateManager.IsInputKeyNotNeedSceondNumber(inputKey))
+            if (uiManager.IsInputKeyNotNeedSceondNumber(inputKey))
             {
                 uiManager.ShowResult(calculateManager, firstStringNumber, inputKey, result);
             }
